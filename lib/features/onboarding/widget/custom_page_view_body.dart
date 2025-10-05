@@ -10,6 +10,7 @@ final String? subTitle;
   @override
   Widget build(BuildContext context) {
     return Column(
+
       children: [
         SizedBox(height: 50,),
         Center(
