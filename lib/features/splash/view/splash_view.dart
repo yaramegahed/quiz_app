@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/features/onboarding/view/onboarding_screen.dart';
 
 import '../../../core/colors/colors.dart';
+import '../widget/custom_button.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -26,24 +28,14 @@ class SplashView extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          MaterialButton(
-            onPressed: () {},
-            child: Container(
-              width: 350,
-              height: 70,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(35), color: Colors.white),
-              child: Center(
-                child: Text(
-                  "Get Started",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 21,
-                    fontFamily: "Montserrat",
-                  ),
-                ),
-              ),
-            ),
+          CustomButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OnboardingScreen(),
+                  ));
+            },
           )
         ],
       ),
