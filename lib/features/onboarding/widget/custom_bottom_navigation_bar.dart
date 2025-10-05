@@ -2,12 +2,12 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/colors/colors.dart';
-
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({
     super.key,
     required this.onTap,
-    required this.outputData, required this.nextOnTap,
+    required this.outputData,
+    required this.nextOnTap,
   });
 
   final void Function(int) onTap;
@@ -17,25 +17,28 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32,),
+      padding: const EdgeInsets.symmetric(horizontal: 32 ),
       child: Row(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "skip",
+            "Skip",
             style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
           ),
           StreamBuilder(
             stream: outputData,
             builder: (context, snapshot) => DotsIndicator(
               decorator: DotsDecorator(
-                  size: Size(12, 12),
-                  activeSize: Size(12, 12),
-                  activeColor: AppColors.kDotActive,
-                  color: AppColors.kDotMain),
+                size: const Size(12, 12),
+                activeSize: const Size(12, 12),
+                activeColor: AppColors.kDotActive,
+                color: AppColors.kDotMain,
+              ),
               onTap: onTap,
               dotsCount: 3,
-              position: snapshot.data == null ? 0.0 : snapshot.data!.toDouble(),
+              position: snapshot.data == null
+                  ? 0.0
+                  : (snapshot.data as num).toDouble(),
             ),
           ),
           InkWell(

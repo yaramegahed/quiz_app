@@ -17,7 +17,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     _onboardingController = OnboardingController();
   }
@@ -25,7 +25,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void dispose() {
     _onboardingController.onDispose();
-    // TODO: implement dispose
+
     super.dispose();
   }
 
@@ -44,14 +44,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             );}
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        outputData: _onboardingController.outputData,
-        onTap: (indexPosition) {
-          _onboardingController.onTap(indexPosition);
-        },
-        nextOnTap: () {
-          _onboardingController.nextOnTap();
-        },
+      bottomNavigationBar: SizedBox(
+        height: 100,
+        child: CustomBottomNavigationBar(
+
+          outputData: _onboardingController.outputData,
+          onTap: (indexPosition) {
+            _onboardingController.onTap(indexPosition);
+          },
+          nextOnTap: () {
+            _onboardingController.nextOnTap();
+          },
+        ),
       ),
     );
   }
