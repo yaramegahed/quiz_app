@@ -63,6 +63,8 @@ flutter:
      - assets/images/Frame.png
      - assets/images/undraw_in.png
      - assets/images/undraw_questions.png
+     - assets/images/loginScreen.png
+     - assets/images/Q.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
