@@ -1,5 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/features/login/view/login_screen.dart';
 
 import '../../../core/colors/colors.dart';
 
@@ -7,7 +9,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({
     super.key,
     required this.onTap,
-    required this.outputData, required this.nextOnTap,
+    required this.outputData,
+    required this.nextOnTap,
   });
 
   final void Function(int) onTap;
@@ -17,13 +20,24 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32,),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 32,
+      ),
       child: Row(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "skip",
-            style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => LoginScreen(),
+                  ));
+            },
+            child: Text(
+              "Skip",
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+            ),
           ),
           StreamBuilder(
             stream: outputData,
@@ -35,7 +49,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   color: AppColors.kDotMain),
               onTap: onTap,
               dotsCount: 3,
-              position: snapshot.data == null ? 0.0 : snapshot.data!.toDouble(),
+              position:
+                  snapshot.data == null ? 0.0 : (snapshot.data).toDouble(),
             ),
           ),
           InkWell(

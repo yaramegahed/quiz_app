@@ -34,24 +34,46 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       body: SafeArea(
         child: PageView.builder(
-          itemCount:data.length,
-          itemBuilder: (context, index) {
-            final item=data[index];
-           return CustomPageViewBody(
-              image:item.image,
-              title: item.title,
-              subTitle: item.subtitle,
-            );}
-        ),
+            onPageChanged: (int indexPosition) {
+              _onboardingController.onTap(indexPosition);
+              print(_onboardingController.currentPositionPage);
+              // _onboardingController.currentPositionPage=value;
+              // _onboardingController.onTap(value);
+              // if (_onboardingController.isTapped == true) {
+              //   if (_onboardingController.pageController.page!.round() ==
+              //       _onboardingController.currentPositionPage) {
+              //     _onboardingController.isTapped = false;
+              //   }
+              // } else {
+              //   _onboardingController.onTap(value);
+              // }
+            },
+            controller: _onboardingController.pageController,
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final item = data[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: CustomPageViewBody(
+                  image: item.image,
+                  title: item.title,
+                  subTitle: item.subtitle,
+                ),
+              );
+            }),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        outputData: _onboardingController.outputData,
-        onTap: (indexPosition) {
-          _onboardingController.onTap(indexPosition);
-        },
-        nextOnTap: () {
-          _onboardingController.nextOnTap();
-        },
+      bottomNavigationBar: SizedBox(
+        height: 100,
+        child: CustomBottomNavigationBar(
+          outputData: _onboardingController.outputData,
+          onTap: (indexPosition) {
+            _onboardingController.isTapped = true;
+            _onboardingController.onTap(indexPosition);
+          },
+          nextOnTap: () {
+            _onboardingController.nextOnTap();
+          },
+        ),
       ),
     );
   }
