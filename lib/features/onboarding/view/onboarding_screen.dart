@@ -69,9 +69,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           onTap: (indexPosition) {
             _onboardingController.isTapped = true;
             _onboardingController.onTap(indexPosition);
+            _onboardingController.pageController
+                .jumpToPage(_onboardingController.currentPositionPage);
           },
           nextOnTap: () {
             _onboardingController.nextOnTap();
+            _onboardingController.pageController
+                .jumpToPage(_onboardingController.currentPositionPage);
           },
         ),
       ),
