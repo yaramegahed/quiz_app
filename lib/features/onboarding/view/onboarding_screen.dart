@@ -14,17 +14,19 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   late OnboardingController _onboardingController;
+  late PageController _pageController;
 
   @override
   void initState() {
-
     super.initState();
     _onboardingController = OnboardingController();
+    _pageController = PageController();
   }
 
   @override
   void dispose() {
     _onboardingController.onDispose();
+    _pageController.dispose();
 
     super.dispose();
   }
@@ -34,26 +36,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       body: SafeArea(
         child: PageView.builder(
-          itemCount:data.length,
-          itemBuilder: (context, index) {
-            final item=data[index];
-           return CustomPageViewBody(
-              image:item.image,
-              title: item.title,
-              subTitle: item.subtitle,
-            );}
-        ),
+          controller:_pageController ,
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final item = data[index];
+              return CustomPageViewBody(
+                image: item.image,
+                title: item.title,
+                subTitle: item.subtitle,
+              );
+            }),
       ),
       bottomNavigationBar: SizedBox(
         height: 100,
         child: CustomBottomNavigationBar(
-
           outputData: _onboardingController.outputData,
           onTap: (indexPosition) {
             _onboardingController.onTap(indexPosition);
+            _pageController.jumpToPage(_onboardingController.currentPositionPage.toInt());
           },
           nextOnTap: () {
             _onboardingController.nextOnTap();
+            _pageController.jumpToPage(_onboardingController.currentPositionPage.toInt());
           },
         ),
       ),
