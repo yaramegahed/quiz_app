@@ -37,16 +37,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             onPageChanged: (int indexPosition) {
               _onboardingController.onTap(indexPosition);
               print(_onboardingController.currentPositionPage);
-              // _onboardingController.currentPositionPage=value;
-              // _onboardingController.onTap(value);
-              // if (_onboardingController.isTapped == true) {
-              //   if (_onboardingController.pageController.page!.round() ==
-              //       _onboardingController.currentPositionPage) {
-              //     _onboardingController.isTapped = false;
-              //   }
-              // } else {
-              //   _onboardingController.onTap(value);
-              // }
             },
             controller: _onboardingController.pageController,
             itemCount: data.length,

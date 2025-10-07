@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({required this.onPressed,
+class CustomSplashButton extends StatelessWidget {
+  const CustomSplashButton({required this.onPressed,
     super.key,
   });
 final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: onPressed,
+    return GestureDetector(
+      onTap: onPressed,
       child: Container(
         width: 350,
         height: 70,

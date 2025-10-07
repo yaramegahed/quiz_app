@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/features/onboarding/view/onboarding_screen.dart';
 
 import '../../../core/colors/colors.dart';
-import '../widget/custom_button.dart';
+import '../widget/custom_splash_button.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -28,7 +28,7 @@ class SplashView extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          CustomButton(
+          CustomSplashButton(
             onPressed: () {
               Navigator.pushReplacement(
                   context,

@@ -1,6 +1,5 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:quiz_app/features/login/view/login_screen.dart';
 
 import '../../../core/colors/colors.dart';
@@ -26,7 +25,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          InkWell(
+          GestureDetector(
             onTap: () {
               Navigator.pushReplacement(
                   context,
@@ -53,7 +52,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   snapshot.data == null ? 0.0 : (snapshot.data).toDouble(),
             ),
           ),
-          InkWell(
+          GestureDetector(
             onTap: nextOnTap,
             child: Text(
               "Next",

@@ -15,7 +15,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-  String? userName;
   late final LoginScreenController loginScreenController =
   LoginScreenController();
 
