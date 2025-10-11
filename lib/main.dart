@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/features/answers/view/answers_screen.dart';
 import 'package:quiz_app/features/quiz/view/quiz_screen.dart';
 import 'package:quiz_app/features/splash/view/splash_view.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Montserrat"),
       debugShowCheckedModeBanner: false,
-      home: const QuizScreen(),
+      home: const AnswersScreen(),
     );
   }
 }

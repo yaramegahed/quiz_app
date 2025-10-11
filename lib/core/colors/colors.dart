@@ -7,4 +7,7 @@ class AppColors {
   static const Color kQuizBGColor=Color(0xffEFF0F3);
   static const Color kCircleBG=Color(0x61473F97);
   static const Color kCircleText=Color(0xff004643);
+  static const Color kGreen=Color(0xff35AC05);
+  static const Color kRed=Color(0xffF83E53);
+  static const Color kDividerWhite=Color(0x3BFFFFFF);
 }

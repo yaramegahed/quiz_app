@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/widget/custom_check_container.dart';
 
 import '../../../core/colors/colors.dart';
 
@@ -39,14 +40,7 @@ class CustomRadioContainer extends StatelessWidget {
             isSelected == true
                 ? Icon(Icons.check_circle,
                     color: AppColors.kPrimary, size: 26)
-                : Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: AppColors.kPrimary),
-                        shape: BoxShape.circle),
-                  )
+                : CustomCheckContainer()
           ],
         ),
       ),
