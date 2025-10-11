@@ -16,6 +16,7 @@ class CustomRadioContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -36,7 +37,8 @@ class CustomRadioContainer extends StatelessWidget {
                   fontWeight: FontWeight.w600),
             ),
             isSelected == true
-                ? Icon(Icons.check_circle, color: AppColors.kPrimary, size: 26)
+                ? Icon(Icons.check_circle,
+                    color: AppColors.kPrimary, size: 26)
                 : Container(
                     height: 20,
                     width: 20,

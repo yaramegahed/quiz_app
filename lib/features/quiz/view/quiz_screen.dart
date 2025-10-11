@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/core/colors/colors.dart';
 import 'package:quiz_app/core/widget/custom_button.dart';
 import 'package:quiz_app/features/quiz/controller/quiz_controller.dart';
+import 'package:quiz_app/features/quiz/model/quiz_model.dart';
 import '../widget/custom_app_bar.dart';
 import '../widget/custom_circle_indicator.dart';
-import '../widget/custom_radio_container.dart';
+import '../widget/custom_list_view.dart';
 import '../widget/custom_text_container.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -14,12 +15,16 @@ class QuizScreen extends StatefulWidget {
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _QuizScreenState extends State<QuizScreen>
+    with SingleTickerProviderStateMixin {
   late QuizController quizController;
 
   @override
   void initState() {
-    quizController = QuizController();
+    quizController = QuizController(this, context);
+    quizController.timeCounter();
+    quizController.forwardAnimation();
+    quizController.restartAnimation();
     super.initState();
   }
 
@@ -32,10 +37,11 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final currentQuestion = quizController.allQuestions[0];
     return Scaffold(
       backgroundColor: AppColors.kQuizBGColor,
       appBar: CustomAppBar(
-        title: '1/${quizController.quizCount}',
+        title: quizController.outputDataQuestionIndex,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20),
@@ -47,55 +53,37 @@ class _QuizScreenState extends State<QuizScreen> {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                CustomTextContainer(),
+                CustomTextContainer(
+                  outPutTitleStream: quizController.outputDataTitle,
+                  quizList: quizList,
+                ),
                 Positioned(
                   right: 0,
                   left: 0,
                   top: -50,
-                  child: CustomCircleIndicator(),
+                  child: CustomCircleIndicator(
+                    outPutTime: quizController.outputDataTime,
+                    outPutAnimationProgress: quizController.outputDataAnimation,
+                  ),
                 ),
               ],
             ),
             SizedBox(
               height: 50,
             ),
-            // for(int i = 0; i < quizController.answers.length; i++)
-            Expanded(
-              child: ListView.separated(
-                physics: AlwaysScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return StreamBuilder(
-                    stream: quizController.outputDataQuiz,
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      return CustomRadioContainer(
-                        answer: quizController.answers[index],
-                        isSelected: snapshot.data == null
-                            ? false
-                            : snapshot.data == index
-                                ? true
-                                : false,
-                        onTap: () {
-                          quizController.onTap(index);
-                          print(index);
-                        },
-                      );
-                    },
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    height: 25,
-                  );
-                },
-                itemCount: quizController.answers.length,
-              ),
+            CustomListView(
+              quizController: quizController,
+              currentQuestion: currentQuestion,
+              outputDataGroupValueRadio: quizController.outputDataQuiz,
+              outPutStreamQuestion: quizController.outputDataTitle,
             ),
-
             SizedBox(
               height: 20,
             ),
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                quizController.nextQuestion();
+              },
               title: 'Next',
               isActive: quizController.outputDataNext,
             )
