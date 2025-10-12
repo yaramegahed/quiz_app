@@ -4,9 +4,10 @@ import '../../../core/colors/colors.dart';
 
 class CustomInfoContainer extends StatelessWidget {
   const CustomInfoContainer({
-    super.key,
+    super.key, required this.name, required this.grade,
   });
-
+final String name;
+final String grade;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +27,7 @@ class CustomInfoContainer extends StatelessWidget {
                 style: buildTextStyle(),
               ),
               Text(
-                " Yara",
+                name,
                 style: buildTextStyle(),
               ),
             ],
@@ -38,7 +39,7 @@ class CustomInfoContainer extends StatelessWidget {
                 style: buildTextStyle(),
               ),
               Text(
-                "3 / 5",
+                grade,
                 style: buildTextStyle(fontWeight: FontWeight.w500)
               ),
             ],

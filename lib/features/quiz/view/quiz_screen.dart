@@ -9,7 +9,8 @@ import '../widget/custom_list_view.dart';
 import '../widget/custom_text_container.dart';
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+  const QuizScreen({super.key, required this.name});
+  final String name;
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -21,7 +22,7 @@ class _QuizScreenState extends State<QuizScreen>
 
   @override
   void initState() {
-    quizController = QuizController(this, context);
+    quizController = QuizController(this, context,widget.name);
     quizController.timeCounter();
     quizController.forwardAnimation();
     quizController.restartAnimation();

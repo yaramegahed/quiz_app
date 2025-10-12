@@ -16,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   late final LoginScreenController loginScreenController =
-  LoginScreenController();
+      LoginScreenController();
 
   @override
   void dispose() {
@@ -78,7 +78,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.pushReplacement(
                           context,
                           CupertinoModalPopupRoute(
-                            builder: (context) => QuizScreen(),
+                            builder: (context) => QuizScreen(
+                              name: loginScreenController
+                                  .textEditingController.text,
+                            ),
                           ));
                     },
                     title: 'Start',

@@ -7,6 +7,8 @@ import 'package:quiz_app/features/quiz/model/quiz_model.dart';
 import '../../answers/view/answers_screen.dart';
 
 class QuizController {
+  final String userName;
+
   int answerIndex = -1;
   late StreamController<int> streamControllerQuiz;
   late Sink<int> inputDataQuiz;
@@ -48,7 +50,7 @@ class QuizController {
 
   late BuildContext context;
 
-  QuizController(TickerProvider vsync, this.context) {
+  QuizController(TickerProvider vsync, this.context, this.userName) {
     animationController =
         AnimationController(vsync: vsync, duration: Duration(seconds: 30));
 
@@ -82,7 +84,6 @@ class QuizController {
     outputDataQuestionIndex =
         questionIndexController.stream.asBroadcastStream();
     inputDataQuestionIndex.add('${questionNow + 1}/$quizCount');
-
   }
 
   forwardAnimation() {
@@ -123,7 +124,10 @@ class QuizController {
       Navigator.pushReplacement(
           context,
           CupertinoModalPopupRoute(
-            builder: (context) => AnswersScreen(),
+            builder: (context) => AnswersScreen(
+              name: userName,
+              listCorrectAnswer: correctAnswersList,
+            ),
           ));
     } else {
       questionNow++;

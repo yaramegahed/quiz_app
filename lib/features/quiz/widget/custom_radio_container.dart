@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/core/widget/custom_check_container.dart';
+import 'package:quiz_app/features/quiz/widget/custom_check_container.dart';
 
 import '../../../core/colors/colors.dart';
 
