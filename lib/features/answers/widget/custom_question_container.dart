@@ -20,7 +20,7 @@ class CustomQuestionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 13),
       width: 300,
       decoration: BoxDecoration(
           color: isCorrect == true ? AppColors.kGreen : AppColors.kRed,
@@ -45,9 +45,6 @@ class CustomQuestionContainer extends StatelessWidget {
             Divider(
               color: AppColors.kDividerWhite,
             ),
-            SizedBox(
-              height: 8,
-            ),
             if (isCorrect == false)
               CustomAnswerContainer(
                 answer: answer,
@@ -60,9 +57,6 @@ class CustomQuestionContainer extends StatelessWidget {
               answer: correctAnswer,
               isCorrect: true,
             ),
-            SizedBox(
-              height: 13,
-            )
           ],
         ),
       ),

@@ -66,7 +66,7 @@ class _AnswersScreenState extends State<AnswersScreen> {
                           answer:
                               answersController.correctAnswersList[index] == -1
                                   ? "Not answered"
-                                  : quizList[index].answers[index],
+                                  : quizList[index].answers[widget.listCorrectAnswer[index]],
                           isCorrect: answersController.answers[index],
                           correctAnswer: quizList[index]
                               .answers[quizList[index].correctAnswerIndex],

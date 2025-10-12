@@ -120,6 +120,8 @@ class QuizController {
     answerIndex = -1;
     inputDataQuiz.add(answerIndex);
     if (questionNow >= quizList.length - 1) {
+      animationController.stop();
+      animationController.removeListener(() {});
       inputDataAnimation.add(animationProgress);
       Navigator.pushReplacement(
           context,

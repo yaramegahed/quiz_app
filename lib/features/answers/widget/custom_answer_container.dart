@@ -26,9 +26,11 @@ class CustomAnswerContainer extends StatelessWidget {
               : Icon(Icons.cancel,color: AppColors.kPrimary, size: 26),
           Expanded(
             child: Text(
+              maxLines: 2,
               textAlign: TextAlign.center,
               answer,
               style: TextStyle(
+                height: 1.2,
                   color: AppColors.kPrimary,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
